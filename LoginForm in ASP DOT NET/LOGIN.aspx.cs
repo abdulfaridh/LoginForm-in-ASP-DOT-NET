@@ -30,15 +30,18 @@ namespace LoginForm_in_ASP_DOT_NET
             cmd.Parameters.AddWithValue("@password", TextBox2.Text);
             int count = (int)cmd.ExecuteScalar();
             con.Close();
-            if(count > 0 )
+            if (count > 0)
             {
-                Response.Write("<script>alert('login succesfull');</script>");
+                
                 TextBox1.Text = "";
                 TextBox2.Text = "";
+                System.Threading.Thread.Sleep(2000); 
+                Response.Redirect("TaskPage.aspx"); 
             }
+            
             else
             {
-                Response.Write("<script>alert('invalid login');</script>");
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Invalid login');", true);
             }
         }
 
